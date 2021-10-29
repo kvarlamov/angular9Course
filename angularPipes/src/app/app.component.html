@@ -1,15 +1,24 @@
 <div class="container">
   <h1>Angular pipes</h1>
 
+  <h3>number</h3>
   <p>{{ e | number:'1.1-5' }}</p>
   <p>{{ e | number:'3.1-2' }}</p>
   <p>{{ e | number:'1.0-0' }}</p>
   
   <hr>
-
+  <h3>string</h3>
   <p>{{ str | uppercase }}</p>
   <p>{{ str | lowercase | titlecase }}</p>
   <p>{{ str | titlecase | slice:1:5 }}</p>
   <p>{{ str | titlecase | slice:1:-2 }}</p>
+   
+  <hr>
+  <h3>date</h3>
+  <p>{{ date | date}}</p>
+  <p>{{ date | date:'short'}}</p>
+  <p>{{ date | date:'fullDate'}}</p>
+  <p>{{ date | date:'longDate'}}</p>
+  <p>{{ date | date:'EE, dd-MMMM-yyyy HH:mm:ss'}}</p>
 
 </div>
