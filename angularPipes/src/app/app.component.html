@@ -2,8 +2,14 @@
   <h1>Angular pipes</h1>
 
   <p>{{ e | number:'1.1-5' }}</p>
-
   <p>{{ e | number:'3.1-2' }}</p>
-
   <p>{{ e | number:'1.0-0' }}</p>
+  
+  <hr>
+
+  <p>{{ str | uppercase }}</p>
+  <p>{{ str | lowercase | titlecase }}</p>
+  <p>{{ str | titlecase | slice:1:5 }}</p>
+  <p>{{ str | titlecase | slice:1:-2 }}</p>
+
 </div>
