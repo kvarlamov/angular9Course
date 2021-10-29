@@ -27,6 +27,13 @@ export class AppComponent {
     this.isActiveBtn = !this.isActiveBtn
   }
 
+  addPost(){
+    this.posts.unshift({
+      title: 'Angular 12',
+      text: 'training course'
+    })
+  }
+
   e: number = Math.E
 
   str = 'hello world'

@@ -5,6 +5,8 @@
   <button class="btn" (click)="changeSearchField('title')" [ngStyle]="{'background-color': isActiveBtn ? 'green':'black'}">Title</button>
   <button class="btn" (click)="changeSearchField('text')" [ngStyle]="{'background-color': !isActiveBtn ? 'green':'black'}">Text</button>
   <input type="text" [(ngModel)]="search">
+  <hr>
+  <button class="btn" (click)="addPost()">Add New Post</button>
   <div
     *ngFor="let p of posts | filter:search:searchField"    
     class="card">
