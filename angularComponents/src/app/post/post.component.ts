@@ -1,11 +1,12 @@
-import { AfterContentChecked,EventEmitter, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import { AfterContentChecked,EventEmitter, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IPost } from '../app.component';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush //with OnPush reacted only on @Input
+  changeDetection: ChangeDetectionStrategy.OnPush, //with OnPush reacted only on @Input
+  encapsulation: ViewEncapsulation.None
 })
 export class PostComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
 
