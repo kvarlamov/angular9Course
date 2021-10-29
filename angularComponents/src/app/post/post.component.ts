@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, ElementRef, Input, OnInit } from '@angular/core';
 import { IPost } from '../app.component';
 
 @Component({
@@ -8,12 +8,13 @@ import { IPost } from '../app.component';
 })
 export class PostComponent implements OnInit {
 
-  @Input('myPost')
-  post: IPost;
+  @Input('myPost') post: IPost;
+  @ContentChild('info', {static:true}) infoRef: ElementRef //true if use it in ngOnInit
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.infoRef.nativeElement)
   }
 
 }
