@@ -5,12 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MultByPipe } from './Pipes/mult-by.pipe';
 import { ExMarksPipe } from './Pipes/ex-marks.pipe';
+import { FilterPipe } from './Pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     MultByPipe,
-    ExMarksPipe
+    ExMarksPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

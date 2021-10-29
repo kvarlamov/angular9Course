@@ -1,6 +1,17 @@
 <div class="container">
   <h1>Angular pipes</h1>
-
+  <hr>
+  <h3>FILTERING pipes</h3>
+  <button class="btn" (click)="changeSearchField('title')" [ngStyle]="{'background-color': isActiveBtn ? 'green':'black'}">Title</button>
+  <button class="btn" (click)="changeSearchField('text')" [ngStyle]="{'background-color': !isActiveBtn ? 'green':'black'}">Text</button>
+  <input type="text" [(ngModel)]="search">
+  <div
+    *ngFor="let p of posts | filter:search:searchField"    
+    class="card">
+    <h2>{{ p.title }}</h2>
+    <p>{{ p.text }}</p>
+  </div>
+  <hr>
   <h3>number</h3>
   <p>{{ e | number:'1.1-5' }}</p>
   <p>{{ e | number:'3.1-2' }}</p>
