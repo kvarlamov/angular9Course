@@ -1,5 +1,7 @@
 <div class="container">
   <h1>Angular pipes</h1>
+  <p>Wait for promise {{p | async}}</p>
+  <p>Date: {{dateO | async | date:'HH:mm:ss YYYY'}}</p>
   <hr>
   <h3>FILTERING pipes</h3>
   <button class="btn" (click)="changeSearchField('title')" [ngStyle]="{'background-color': isActiveBtn ? 'green':'black'}">Title</button>
