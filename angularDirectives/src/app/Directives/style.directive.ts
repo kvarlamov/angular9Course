@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from "@angular/core";
+import { Directive, ElementRef, HostBinding, HostListener, Input, Renderer2 } from "@angular/core";
 
 @Directive({
     selector: '[appStyle]'
@@ -10,6 +10,8 @@ export class StyleDirective {
     @Input() fontWeight = "normal"
     @Input() dStyles: {border?: string, fontWeight?: string, borderRadius?: string}
 
+    @HostBinding('style.color') elColor:string = ''
+
     constructor(private el: ElementRef, private render: Renderer2) {
         this.render.setStyle(this.el.nativeElement, 'color', 'blue')
     }
@@ -19,7 +21,8 @@ export class StyleDirective {
     }
 
     @HostListener('mouseenter') onEnter() {
-        this.render.setStyle(this.el.nativeElement, 'color', this.color)
+        this.elColor = this.color //different way
+        // this.render.setStyle(this.el.nativeElement, 'color', this.color)
         this.render.setStyle(this.el.nativeElement, 'fontWeight', this.dStyles.fontWeight)
         this.render.setStyle(this.el.nativeElement, 'border', this.dStyles.border)
         this.render.setStyle(this.el.nativeElement, 'borderRadius', this.dStyles.borderRadius)
