@@ -4,4 +4,23 @@
   <p appStyle="red" fontWeight="bold" [dStyles]="{border: '1px solid blue', borderRadius: '5px'}">
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur repudiandae ut nemo nostrum ducimus adipisci corporis error possimus rerum illo rem reiciendis itaque deserunt doloremque, nisi eius quas velit autem!
   </p>
+
+  <button class="btn" (click)="isVisible = !isVisible">Change Visibility</button>
+
+  <!-- I way -->
+  <!-- <div class="wrap" *ngIf="isVisible">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  </div> -->
+
+  <!-- II way - angular do it after compilation -->
+  <!-- <ng-template [ngIf]="isVisible">
+    <div class="wrap">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+  </ng-template> -->
+
+  <!-- III way -->
+  <div class="wrap" *appIfnot="!isVisible">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  </div>
 </div>
