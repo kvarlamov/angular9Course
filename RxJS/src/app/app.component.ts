@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { interval } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 import * as internal from 'stream';
 // import { interval } from 'rxjs/operator';
 
@@ -9,10 +9,17 @@ import * as internal from 'stream';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  sub:Subscription
+
   constructor() {
     const intervalStream$ = interval(1000)
-    intervalStream$.subscribe((value) => {
+    this.sub = intervalStream$.subscribe((value) => {
       console.log(value)
     })
+  }
+
+  stop() {
+    this.sub.unsubscribe()
   }
 }
