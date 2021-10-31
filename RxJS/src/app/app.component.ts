@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Console, error } from 'console';
-import { interval, Subscription, Observable } from 'rxjs';
+import { interval, Subscription, Observable, Subject } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 @Component({
@@ -11,6 +11,10 @@ import { map, filter } from 'rxjs/operators';
 export class AppComponent {
 
   sub:Subscription
+  sub2:Subscription
+
+  streamSubject$:Subject<number> = new Subject<number>()
+  counter = 0
 
   constructor() {
     const stream$ = new Observable(observer => {
@@ -29,6 +33,10 @@ export class AppComponent {
       setTimeout(() => {
         observer.next(2)
       }, 3000)
+    })
+
+    this.sub2 = this.streamSubject$.subscribe(value => {
+      console.log(value)
     })
 
     this.sub = stream$.subscribe(
@@ -50,6 +58,12 @@ export class AppComponent {
       .subscribe((value) => {
         console.log(value)
       })
+  }
+
+  next() {
+    this.counter++
+    this.streamSubject$.next(this.counter)
+    
   }
 
   stop() {
