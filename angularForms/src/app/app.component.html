@@ -27,13 +27,13 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" formGroupName="address">
       <h2>Адрес</h2>
 
       <div class="form-control">
         <label>Страна</label>
 
-        <select>
+        <select formControlName="country">
           <option value="ru">Россия</option>
           <option value="ua">Украина</option>
           <option value="by">Беларусь</option>
@@ -41,7 +41,13 @@
       </div>
 
       <div class="form-control">
-        <input type="text">
+        <input type="text" formControlName="city" placeholder="City">
+        <div 
+        *ngIf="form.get('address.city')?.invalid && form.get('address.city')?.touched"
+        class="validation"
+        >
+          <small *ngIf="form.get('address.city')?.errors?.required">city can't be empty</small>
+        </div>
       </div>
 
       <button class="btn" type="button">Выбрать столицу</button>
