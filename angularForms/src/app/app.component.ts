@@ -10,6 +10,7 @@ import { MyValidators } from './my.validators';
 export class AppComponent implements OnInit {
 
   form: FormGroup
+  appState = 'off'
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -57,5 +58,9 @@ export class AppComponent implements OnInit {
     console.log('FORM DATA', formData)
 
     this.form.reset()
+  }
+
+  handleChange() {
+    console.log(this.appState)
   }
 }

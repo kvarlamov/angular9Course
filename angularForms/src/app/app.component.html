@@ -1,4 +1,13 @@
 <div class="container">
+  <h1>Angular ngModel</h1>
+  <app-switch 
+    [(ngModel)]="appState"
+    (ngModelChange)="handleChange()"
+  ></app-switch>
+  <br>
+  <p>appState:{{appState}}</p>
+  <br>
+  <hr>
   <form class="card" [formGroup]="form" (ngSubmit)="submit()">
     <h1>Angular Forms</h1>
 
