@@ -11,6 +11,7 @@
       >
       <small *ngIf="form.get('email')?.errors?.required">Email can't be empty</small>
       <small *ngIf="form.get('email')?.errors?.email">Enter valid email</small>
+      <small *ngIf="form.get('email')?.errors?.restrictedEmail">Email {{form.get('email')?.value}} in black list</small>
       </div>
     </div>
 
