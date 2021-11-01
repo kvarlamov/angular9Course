@@ -9,9 +9,10 @@
         *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
         class="validation"
       >
-      <small *ngIf="form.get('email')?.errors?.required">Email can't be empty</small>
-      <small *ngIf="form.get('email')?.errors?.email">Enter valid email</small>
-      <small *ngIf="form.get('email')?.errors?.restrictedEmail">Email {{form.get('email')?.value}} in black list</small>
+        <small *ngIf="form.get('email')?.errors?.required">Email can't be empty</small>
+        <small *ngIf="form.get('email')?.errors?.email">Enter valid email</small>
+        <small *ngIf="form.get('email')?.errors?.restrictedEmail">Email {{form.get('email')?.value}} in black list</small>
+        <small *ngIf="form.get('email')?.errors?.uniqEmail">Email {{form.get('email')?.value}} is already used</small>
       </div>
     </div>
 
@@ -66,7 +67,7 @@
       </div>
     </div>
 
-    <button class="btn" type="submit" [disabled]="form.invalid">Отправить</button>
+    <button class="btn" type="submit" [disabled]="form.invalid || form.pending">Отправить</button>
 
   </form>
 </div>
