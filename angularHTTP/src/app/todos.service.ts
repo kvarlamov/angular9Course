@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpEventType, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, pipe, throwError } from "rxjs";
-import { catchError, delay } from "rxjs/operators";
+import { catchError, delay, map, tap } from "rxjs/operators";
 
 export interface Todo {
     completed: boolean,
@@ -31,9 +31,14 @@ export class TodosService {
 
         return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=2', {
             // params: new HttpParams().set('_limit','3')
-            params
+            params,
+            observe: 'response'
         })
             .pipe(
+                map(response => {
+                   console.log(response);
+                   return <Todo[]>response.body;
+                }),
                 delay(300),
                 catchError(error => {
                     console.log('Error:', error.message);
@@ -45,7 +50,21 @@ export class TodosService {
         return this.http.put<Todo>(`https://jsonplaceholder.typicode.com/todos/${id}`, {completed: true})
     }
 
-    removeTodo(id:number | undefined): Observable<void> {
-        return this.http.delete<void>(`https://jsonplaceholder.typicode.com/todos/${id}`);
+    removeTodo(id:number | undefined): Observable<any> {
+        return this.http.delete<void>(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+            observe: 'events',
+            responseType: 'json'
+        }).pipe(
+            //detailed access to all events in request
+            tap(event => {
+                console.log(event);
+                if (event.type === HttpEventType.Sent) {
+                    console.log('Sent', event);
+                }
+                if (event.type === HttpEventType.Response) {
+                    console.log('Response', event);
+                }
+            })
+        );
     }
 }
