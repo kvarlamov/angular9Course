@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, pipe, throwError } from "rxjs";
+import { catchError, delay } from "rxjs/operators";
 
 export interface Todo {
     completed: boolean,
@@ -17,7 +18,13 @@ export class TodosService {
     }
 
     fetchTodos(): Observable<Todo[]> {
-        return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=2');
+        return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todo2s?_limit=2')
+            .pipe(
+                delay(300),
+                catchError(error => {
+                    console.log('Error:', error.message);
+                    return throwError(error)
+                }));
     }
 
     completeTodo(id: number | undefined): Observable<Todo> {

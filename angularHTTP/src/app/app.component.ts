@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   todos: Todo[] = []
   todoTitle = ''
   loading = false
+  error = ''
 
   constructor(private todosService: TodosService) {}
 
@@ -40,17 +41,22 @@ export class AppComponent implements OnInit {
   fetchTodos() {
     this.loading = true;
     this.todosService.fetchTodos()
-      .pipe(delay(1500))
       .subscribe(todos => {
         this.todos = todos
         this.loading = false
+      }, error => {
+        console.log('ERROR:',error.message);
+        this.error = error.message;
       })
   }
 
   completeTodo(id:number | undefined) {
     this.todosService.completeTodo(id)
-      .subscribe(todo => {
+      .subscribe(
+        todo => {
         (this.todos.find(t => t.id === id) as Todo).completed = true;
+      }, error => {
+        console.log(error)
       })
   }
 
