@@ -47,6 +47,13 @@ export class AppComponent implements OnInit {
       })
   }
 
+  completeTodo(id:number | undefined) {
+    this.todosService.completeTodo(id)
+      .subscribe(todo => {
+        (this.todos.find(t => t.id === id) as Todo).completed = true;
+      })
+  }
+
   removeTodo(id:number | undefined) {
     this.todosService.removeTodo(id)
       .subscribe(res => {

@@ -20,6 +20,10 @@ export class TodosService {
         return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=2');
     }
 
+    completeTodo(id: number | undefined): Observable<Todo> {
+        return this.http.put<Todo>(`https://jsonplaceholder.typicode.com/todos/${id}`, {completed: true})
+    }
+
     removeTodo(id:number | undefined): Observable<void> {
         return this.http.delete<void>(`https://jsonplaceholder.typicode.com/todos/${id}`);
     }
