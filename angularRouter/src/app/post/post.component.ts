@@ -12,13 +12,17 @@ export class PostComponent implements OnInit{
     post: Post;
     
 
-    constructor(private route: ActivatedRoute, private postService: PostsService, private router: Router){}
+    constructor(private route: ActivatedRoute, private router: Router){}
   
     ngOnInit(): void {
-        this.route.params.subscribe((params: Params) => {
-          console.log('Params:',params);
-          this.post = this.postService.getById(+params.id);
-        })
+      // this.post = this.route.snapshot.params.data.post;
+      this.route.data.subscribe(data => {
+        this.post = data.post
+      })
+        // this.route.params.subscribe((params: Params) => {
+        //   console.log('Params:',params);
+        //   this.post = this.postService.getById(+params.id);
+        // })
     }
 
     loadPost() {
