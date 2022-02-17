@@ -8,8 +8,10 @@ import { IPost } from '../app.component';
 })
 export class PostFormComponent implements OnInit {
 
+  //pass param to parent
   @Output() onAdd: EventEmitter<IPost> = new EventEmitter<IPost>()
 
+  //get html element from dom using angular
   @ViewChild('titleInput') inputRef: ElementRef
 
   title: string = ''
@@ -36,6 +38,7 @@ export class PostFormComponent implements OnInit {
   }
 
   focusTitle() {
+    //nativeElement === Dom Node
     this.inputRef.nativeElement.focus()
   }
 
