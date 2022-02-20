@@ -9,6 +9,7 @@ import { LocalCounterService } from './services/local-counter.service';
   providers: [LocalCounterService]
 })
 export class AppComponent {
+
   constructor(public appCounterService: AppCounterService, public localCounterService:LocalCounterService) {
 
   }

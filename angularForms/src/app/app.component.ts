@@ -9,7 +9,7 @@ import { MyValidators } from './my.validators';
 })
 export class AppComponent implements OnInit {
 
-  form: FormGroup
+  form: FormGroup //class that allow us to create form
   appState = 'off'
 
   ngOnInit(): void {
@@ -32,10 +32,11 @@ export class AppComponent implements OnInit {
       ua: 'Киев'
     }
 
-    
+
     const cityKey = this.form.get('address').get('country').value
     const city = cityMap[cityKey]
 
+    //special method to set value to particular control
     this.form.patchValue({
       address:{city}
     })

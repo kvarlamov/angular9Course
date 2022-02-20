@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Console, error } from 'console';
-import { interval, Subscription, Observable, Subject } from 'rxjs';
+import { interval, Subscription, Observable, Subject } from 'rxjs'; //this import let us create new streams
 import { map, filter } from 'rxjs/operators';
 
 @Component({
@@ -13,6 +13,7 @@ export class AppComponent {
   sub:Subscription
   sub2:Subscription
 
+  //with Subject we could subscribe on stream
   streamSubject$:Subject<number> = new Subject<number>()
   counter = 0
 
@@ -29,7 +30,7 @@ export class AppComponent {
       setTimeout(() => {
         observer.complete()
       }, 2500)
-      
+
       setTimeout(() => {
         observer.next(2)
       }, 3000)
@@ -54,7 +55,7 @@ export class AppComponent {
       .pipe(
         filter(v => v % 2 === 0),
         map(v => 'Mapped value:' + v)
-      )  
+      )
       .subscribe((value) => {
         console.log(value)
       })
@@ -63,10 +64,11 @@ export class AppComponent {
   next() {
     this.counter++
     this.streamSubject$.next(this.counter)
-    
+
   }
 
   stop() {
+    //unsubscribe to prevent memory leak
     this.sub.unsubscribe()
   }
 }
